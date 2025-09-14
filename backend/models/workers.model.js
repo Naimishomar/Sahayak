@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const workersSchema = new mongoose.Schema({
-  id:{
+const workerSchema = new mongoose.Schema({
+  workerId: {  // custom worker id if you need it
     type: Number,
     required: true,
     unique: true,
@@ -9,43 +9,51 @@ const workersSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
+    lowercase: true,
   },
   aadharCard: {
-    type: Number,
+    type: String,  // changed to String
     required: true,
     unique: true,
-    minLength: [12, "Should be of length 12"],
-    maxLength: [12, "Should be of length 12"],
+    minlength: [12, "AadharNumber should be of 12 digits"],
+    maxlength: [12, "AadharNumber should be of 12 digits"],
+    match: [/^[0-9]{12}$/, "Invalid Aadhar number"],
   },
-  phoneNumber:{
-    type: Number,
-    required: true, 
+  phoneNumber: {
+    type: String,  // changed to String
+    required: true,
     unique: true,
-    minLength: [10, "Should be of length 10"],
-    maxLength: [10, "Should be of length 10"],
+    minlength: [10, "Phone should be 10 digits"],
+    maxlength: [10, "Phone should be 10 digits"],
+    match: [/^[0-9]{10}$/, "Invalid phone number"],
   },
-  age:{
+  age: {
     type: Number,
     required: true,
+    min: [18, "Worker must be at least 18"],
   },
   gender: {
     type: String,
     required: true,
+    enum: ["Male", "Female", "Other"], // restrict values
   },
   password: {
     type: String,
     required: true,
+    minlength: [6, "Password must be at least 6 characters"],
   },
-  admin:{
+  admin: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
     required: true,
-  }
-});
+  },
+}, { timestamps: true });
 
-const Workers =  mongoose.model("Workers", workersSchema);
-export default Workers;
+const Worker = mongoose.model("Worker", workerSchema);
+export default Worker;

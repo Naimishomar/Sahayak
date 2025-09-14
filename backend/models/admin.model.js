@@ -43,15 +43,15 @@ const adminSchema = new mongoose.Schema({
   workers:{
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Workers",
-    required: true,
+    required: false,
   },
   workersPaid:{
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Workers",
-    required: true,
+    required: false,
   },
   mine:{
-    type: [mongoose.Schema.Types.ObjectId],
+    type: Number,
     ref: "Mines",
     required: true,
   },

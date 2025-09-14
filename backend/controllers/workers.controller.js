@@ -33,7 +33,6 @@ export const registerWorker = async(req,res)=>{
         return res.status(400).json({message:"Error in registerWorker"});
     }
 }
-
 export const loginWorker = async(req,res)=>{
     try {
         const {id,password} = req.body;
@@ -57,7 +56,6 @@ export const loginWorker = async(req,res)=>{
         return res.status(400).json({message:"Error in loginWorker"});
     }
 }
-
 export const getAllWorkers = async(req,res)=>{
     try {
         const workers = await Workers.find();
@@ -67,7 +65,6 @@ export const getAllWorkers = async(req,res)=>{
         return res.status(400).json({message:"Error in getAllWorkers"});
     }
 }
-
 export const getWorkerById = async(req,res)=>{
     try {
         const {id} = req.params;
@@ -86,7 +83,6 @@ export const getWorkerById = async(req,res)=>{
         return res.status(400).json({message:"Error in getWorkerById"});
     }
 }
-
 export const updateWorker = async(req,res)=>{
     try {
         const {previousPassword, password, mobileNumber} = req.body;
@@ -112,7 +108,6 @@ export const updateWorker = async(req,res)=>{
         return res.status(400).json({message:"Error in updateWorker"});
     }
 }
-
 export const deleteWorker = async(req,res)=>{
     try {
         const worker = await Workers.findOne({id: req.user.id});
