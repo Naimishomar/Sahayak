@@ -44,6 +44,44 @@ const findMeasurements = async () => {
     }
   };
 
+const handleImageChange = async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  setIsProcessing(true);
+  setStatus("Uploading image...");
+
+  const formData = new FormData();
+  formData.append('file', file);
+  const sensorValues = [
+    sensorData.temperature_c || 0,
+    sensorData.humidity_percent || 0,
+    sensorData.distance_cm || 0,
+    sensorData.ax || 0,
+    sensorData.ay || 0,
+    sensorData.az || 0,
+    sensorData.gx || 0
+  ].join(",");
+  formData.append('sensor_data', sensorValues);
+
+  try {
+    const response = await axios.post('http://192.168.38.40:8000/predict', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log("Image analysis result:", response.data);
+    setAugmentedImage("data:image/jpeg;base64," + response.data.annotated_image);
+    setStatus("Image uploaded and processed");
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    setStatus("Error uploading image");
+  } finally {
+    setIsProcessing(false);
+  }
+};
+
+
   return (
     <div className="text-black min-h-screen font-sans p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
@@ -67,7 +105,7 @@ const findMeasurements = async () => {
           <section>
             <h2 className="text-2xl font-semibold mb-4 border-l-4 border-cyan-400 pl-3">Visual Analysis (YOLO)</h2>
             <div className="border p-6 rounded-lg shadow-xl">
-              <input type="file" accept="image/*" className="hidden" ref={fileInputRef} />
+              <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageChange} />
               <button
                 onClick={() => fileInputRef.current.click()}
                 disabled={isProcessing}
