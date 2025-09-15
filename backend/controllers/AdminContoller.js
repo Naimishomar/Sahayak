@@ -3,9 +3,12 @@
 import Worker from "../models/workers.model.js";
 import Admin from "../models/admin.model.js";
 import { nanoid } from "nanoid";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const registerAdmin = async(req,res)=>{
     try {
+    console.log(req.body);
         const {name,email,aadharCard,age,gender,password} = req.body;
         if(!name || !email || !aadharCard || !age || !gender || !password){
             return res.status(400).json({message:"Missing required fields"});

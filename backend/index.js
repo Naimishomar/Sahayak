@@ -15,15 +15,19 @@ dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*',  // your frontend's origin
+  credentials: true,
+}));
+
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 app.post('/sensorsLive',SensorsLivedata);
-app.use('/admin',WorkersRoute);
-app.use("/Admin",AdminRoutes);
+app.use('/admin/workers',WorkersRoute);
+app.use("/admin",AdminRoutes);
 app.use('/worker',WorkerRoute);
 
 

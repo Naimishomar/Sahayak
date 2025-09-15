@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
-
+import React, { useState , useRef} from 'react';
+import axios from 'axios';
 // Helper component for a single sensor reading
 const SensorCard = ({ label, value, unit }) => (
   <div className="border p-4 rounded-lg text-center shadow-md">
     <div className="text-sm text-black">{label}</div>
-    <div className="text-2xl font-bold text-black">
+    <div className="text-md font-semibold text-black">
       {typeof value === 'number' ? value.toFixed(2) : '--'}
       <span className="text-lg text-black ml-1">{unit}</span>
     </div>
@@ -13,43 +13,27 @@ const SensorCard = ({ label, value, unit }) => (
 
 // Main App Component
 export default function PredictionPage() {
-  const [sensorData, setSensorData] = useState({});
+  const [sensorData, setSensorData] = useState([]);
   const [annPrediction, setAnnPrediction] = useState({ label: 'N/A', probability: 0 });
   const [augmentedImage, setAugmentedImage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [status, setStatus] = useState('Connecting to server...');
   const fileInputRef = useRef(null);
-
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    setIsProcessing(true);
-    setAugmentedImage(null);
-    setAnnPrediction({ label: 'N/A', probability: 0 }); // Reset on new upload
-
-    const formData = new FormData();
-    formData.append('image', file);
-
+  
+const findMeasurements = async () => {
     try {
-      // Send image to the backend via HTTP POST
-      const response = await fetch('http://localhost:5000/predict', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Image upload failed');
-      }
-      // The result will come back via the WebSocket connection
-      setStatus('Image uploaded. Processing with YOLO...');
-
+      const response = await axios.get('http://192.168.38.40:8000/sensorsLive');
+      const n = response.data.length;
+      setSensorData(response.data[n-1]);
     } catch (error) {
-      console.error('Upload error:', error);
-      setStatus('Error uploading image.');
-      setIsProcessing(false);
+      console.log("Error in findMeasurements:", error);
     }
   };
+
+  setTimeout(() => {
+    findMeasurements();
+  }, 50);
+
 
   const getLabelColor = (label) => {
     switch (label) {
@@ -83,7 +67,7 @@ export default function PredictionPage() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 border-l-4 border-cyan-400 pl-3">Visual Analysis (YOLO)</h2>
             <div className="border p-6 rounded-lg shadow-xl">
-              <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" ref={fileInputRef} />
+              <input type="file" accept="image/*" className="hidden" ref={fileInputRef} />
               <button
                 onClick={() => fileInputRef.current.click()}
                 disabled={isProcessing}
