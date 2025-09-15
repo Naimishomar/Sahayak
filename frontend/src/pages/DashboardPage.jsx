@@ -253,8 +253,8 @@ const DashboardPage = () => {
               </div>
               <div className="p-6">
                 <div className="space-y-3">
-                  {tasks.map((task) => (
-                    <div key={task.id} className="flex items-center gap-2">
+                  {tasks.map((task , index) => (
+                    <div key={index} className="flex items-center gap-2">
                       <input
                         type="checkbox"
                         className="rounded"

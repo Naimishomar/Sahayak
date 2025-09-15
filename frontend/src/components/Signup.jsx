@@ -9,9 +9,28 @@ function Signup() {
     const [gender,setGender] = useState('')
     const [password,setPassword] = useState('')
 
-    const submitHandler = (e) => {
+    const submitHandler = async(e) => {
         e.preventDefault();
-        console.log(name,email,aadharCard,age,gender,password)
+        try {
+           const response = await fetch('http://localhost:3000/admin/registerAdmin',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                name:name,
+                email:email,
+                aadharCard:aadharCard,
+                age:age,
+                gender:gender,
+                password:password
+            })
+           })
+           const data = await response.json();
+           console.log(data);
+        } catch (error) {
+           console.log("Error:", error);
+        }
     }
   return (
     <div className='bg-black h-screen md:h-full w-full flex justify-center items-center py-20'>

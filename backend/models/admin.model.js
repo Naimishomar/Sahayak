@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema({
   id:{
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },
@@ -23,7 +23,7 @@ const adminSchema = new mongoose.Schema({
   },
   phoneNumber:{
     type: Number,
-    required: true, 
+    required: false, 
     unique: true,
     minLength: [10, "Should be of length 10"],
     maxLength: [10, "Should be of length 10"],
@@ -53,11 +53,11 @@ const adminSchema = new mongoose.Schema({
   mine:{
     type: Number,
     ref: "Mines",
-    required: true,
+    required: false,
   },
   organisation:{
     type: String,
-    required: true,
+    required: false,
   }
 });
 
