@@ -4,7 +4,7 @@ import axios from 'axios';
 const SensorCard = ({ label, value, unit }) => (
   <div className="border p-4 rounded-lg text-center shadow-md">
     <div className="text-sm text-black">{label}</div>
-    <div className="text-md font-semibold text-black">
+    <div className="text-md font-semibold text-black text-center">
       {typeof value === 'number' ? value.toFixed(2) : '--'}
       <span className="text-lg text-black ml-1">{unit}</span>
     </div>
@@ -89,14 +89,16 @@ const handleImageChange = async (event) => {
         {/* --- Live Sensor Data Section --- */}
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 border-l-4 border-cyan-400 pl-3">Live Sensor Feed</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             <SensorCard label="Temp" value={sensorData.temperature_c} unit="°C" />
             <SensorCard label="Humidity" value={sensorData.humidity_percent} unit="%" />
-            <SensorCard label="Distance" value={sensorData.distance_cm} unit="cm" />
+            <SensorCard label="Displacement" value={sensorData.distance_cm} unit="cm" />
             <SensorCard label="Accel X" value={sensorData.ax} unit="g" />
             <SensorCard label="Accel Y" value={sensorData.ay} unit="g" />
             <SensorCard label="Accel Z" value={sensorData.az} unit="g" />
             <SensorCard label="Gyro X" value={sensorData.gx} unit="dps" />
+            <SensorCard label="Gyro Y" value={sensorData.gy} unit="dps" />
+            <SensorCard label="Gyro Z" value={sensorData.gz} unit="dps" />
           </div>
         </section>
 
