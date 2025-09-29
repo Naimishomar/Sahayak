@@ -1,6 +1,6 @@
 const GoalsPage = () => (
   <div className="space-y-6">
-    <div className="bg-white rounded-lg border shadow-sm">
+    <div className="bg-black text-white rounded-lg border shadow-sm">
       <div className="p-6 pb-2">
         <h3 className="text-lg font-semibold">Current Goals</h3>
       </div>

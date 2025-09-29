@@ -56,7 +56,7 @@ const UsersPage = () => {
   return (
     <div className="space-y-6">
       {/* Add Worker Form */}
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">Add Worker</h3>
         </div>
@@ -96,7 +96,7 @@ const UsersPage = () => {
       </div>
 
       {/* User List */}
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">User Management</h3>
         </div>

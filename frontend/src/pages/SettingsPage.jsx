@@ -1,6 +1,6 @@
 const SettingsPage = () => (
   <div className="space-y-6">
-    <div className="bg-white rounded-lg border shadow-sm">
+    <div className="bg-black text-white rounded-lg border shadow-sm">
       <div className="p-6 pb-2">
         <h3 className="text-lg font-semibold">Account Settings</h3>
       </div>
@@ -32,7 +32,7 @@ const SettingsPage = () => (
               <option>UTC+0 (GMT)</option>
             </select>
           </div>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-800">
+          <button className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600">
             Save Changes
           </button>
         </div>

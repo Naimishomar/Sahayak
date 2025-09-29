@@ -3,10 +3,10 @@ import axios from 'axios';
 // Helper component for a single sensor reading
 const SensorCard = ({ label, value, unit }) => (
   <div className="border p-4 rounded-lg text-center shadow-md">
-    <div className="text-sm text-black">{label}</div>
-    <div className="text-md font-semibold text-black text-center">
+    <div className="text-sm text-white">{label}</div>
+    <div className="text-md font-semibold text-white text-center">
       {typeof value === 'number' ? value.toFixed(2) : '--'}
-      <span className="text-lg text-black ml-1">{unit}</span>
+      <span className="text-lg text-white ml-1">{unit}</span>
     </div>
   </div>
 );
@@ -44,6 +44,18 @@ const findMeasurements = async () => {
     }
   };
 
+const vibration_intensity = Math.sqrt(
+  Math.pow(sensorData.ax || 0, 2) +
+  Math.pow(sensorData.ay || 0, 2) +
+  Math.pow(sensorData.az || 0, 2)
+);
+
+const rotation_intensity = Math.sqrt(
+  Math.pow(sensorData.gx || 0, 2) +
+  Math.pow(sensorData.gy || 0, 2) +
+  Math.pow(sensorData.gz || 0, 2)
+);
+
 const handleImageChange = async (event) => {
   const file = event.target.files[0];
   if (!file) return;
@@ -53,19 +65,22 @@ const handleImageChange = async (event) => {
 
   const formData = new FormData();
   formData.append('file', file);
-  const sensorValues = [
-    sensorData.temperature_c || 0,
-    sensorData.humidity_percent || 0,
-    sensorData.distance_cm || 0,
-    sensorData.ax || 0,
-    sensorData.ay || 0,
-    sensorData.az || 0,
-    sensorData.gx || 0
-  ].join(",");
+const sensorValues = [
+  sensorData.temperature_c || 0,
+  sensorData.humidity_percent || 0,
+  sensorData.distance_cm || 0,
+  sensorData.ax || 0,
+  sensorData.ay || 0,
+  sensorData.az || 0,
+  sensorData.gx || 0,
+  sensorData.gy || 0,
+  sensorData.gz || 0,
+].join(",");
+
   formData.append('sensor_data', sensorValues);
 
   try {
-    const response = await axios.post('http://192.168.38.40:8000/predict', formData, {
+    const response = await axios.post('https://c7906d1a4c00.ngrok-free.app/predict', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -83,7 +98,7 @@ const handleImageChange = async (event) => {
 
 
   return (
-    <div className="text-black min-h-screen font-sans p-4 sm:p-6 md:p-8">
+    <div className="text-white min-h-screen font-sans p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
 
         {/* --- Live Sensor Data Section --- */}
@@ -92,13 +107,9 @@ const handleImageChange = async (event) => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             <SensorCard label="Temp" value={sensorData.temperature_c} unit="°C" />
             <SensorCard label="Humidity" value={sensorData.humidity_percent} unit="%" />
-            <SensorCard label="Displacement" value={sensorData.distance_cm} unit="cm" />
-            <SensorCard label="Accel X" value={sensorData.ax} unit="g" />
-            <SensorCard label="Accel Y" value={sensorData.ay} unit="g" />
-            <SensorCard label="Accel Z" value={sensorData.az} unit="g" />
-            <SensorCard label="Gyro X" value={sensorData.gx} unit="dps" />
-            <SensorCard label="Gyro Y" value={sensorData.gy} unit="dps" />
-            <SensorCard label="Gyro Z" value={sensorData.gz} unit="dps" />
+            <SensorCard label="Displacement" value={sensorData.distance_cm/100} unit="m" />
+            <SensorCard label="Vibration" value={vibration_intensity} unit="J" />
+            <SensorCard label="Rotation" value={rotation_intensity} unit="J" />
           </div>
         </section>
 
@@ -130,7 +141,7 @@ const handleImageChange = async (event) => {
             <h2 className="text-2xl font-semibold mb-4 border-l-4 border-cyan-400 pl-3">Prediction Results (ANN)</h2>
             <div className="border p-6 rounded-lg shadow-xl flex flex-col justify-center">
               <div className="text-center text-black">
-                <p className="text-lg text-black">Predicted State</p>
+                <p className="text-lg text-white">Predicted State</p>
                 <p className={`text-6xl font-bold uppercase text-black tracking-widest my-4 ${getLabelColor(annPrediction.label)}`}>
                   {annPrediction.label}
                 </p>

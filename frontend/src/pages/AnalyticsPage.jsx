@@ -1,7 +1,11 @@
 const AnalyticsPage = () => (
   <div className="space-y-6">
+    <div className="w-full p-5 border border-white rounded-2xl">
+      <h1 className="text-white text-2xl font-semibold">Data Elevation Model(DEM)</h1>
+      <img src="https://geospatial.chcnav.com/dam/chcnav/about/news/legacy/digital-elevation-module-dem-lidar-open-pit-mine-chcnav.jpg" alt="" className="w-full rounded-2xl"/>
+    </div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">Page Views</h3>
         </div>
@@ -10,7 +14,7 @@ const AnalyticsPage = () => (
           <p className="text-sm text-gray-600">+12% from last month</p>
         </div>
       </div>
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">Bounce Rate</h3>
         </div>
@@ -19,7 +23,7 @@ const AnalyticsPage = () => (
           <p className="text-sm text-gray-600">-5% from last month</p>
         </div>
       </div>
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">Session Duration</h3>
         </div>
@@ -29,7 +33,7 @@ const AnalyticsPage = () => (
         </div>
       </div>
     </div>
-    <div className="bg-white rounded-lg border shadow-sm">
+    <div className="bg-black text-white rounded-lg border shadow-sm">
       <div className="p-6 pb-2">
         <h3 className="text-lg font-semibold">Traffic Sources</h3>
       </div>

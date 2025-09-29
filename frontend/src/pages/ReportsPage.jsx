@@ -73,7 +73,7 @@ const ReportsPage = () => {
   return (
     <div className="space-y-6">
       {/* Reports List */}
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">Monthly Reports</h3>
         </div>
@@ -93,7 +93,7 @@ const ReportsPage = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => downloadPDF(report)}
-                  className="px-3 py-1 text-sm font-medium text-gray-700 bg-transparent border border-gray-300 rounded-md hover:bg-gray-50"
+                  className="px-3 py-1 text-sm font-medium text-white border bg-blue-500 rounded-md hover:bg-blue-600"
                 >
                   Download
                 </button>
@@ -110,7 +110,7 @@ const ReportsPage = () => {
       </div>
 
       {/* Generate New Report */}
-      <div className="bg-white rounded-lg border shadow-sm">
+      <div className="bg-black text-white rounded-lg border shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-lg font-semibold">Generate New Report</h3>
         </div>
@@ -122,7 +122,7 @@ const ReportsPage = () => {
               value={newReportTitle}
               onChange={(e) => setNewReportTitle(e.target.value)}
               placeholder="Enter report title"
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 border rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
@@ -137,7 +137,7 @@ const ReportsPage = () => {
           </div>
           <button
             onClick={generateNewReport}
-            className="w-full px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-800"
+            className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
           >
             Generate Report
           </button>

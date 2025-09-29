@@ -33,14 +33,14 @@ const DashboardPage = () => {
 
   return (
     <>
-      <div className="w-full bg-white/95 rounded-2xl mb-5 p-4">
+      <div className="w-full bg-black border text-white rounded-2xl mb-5 p-4">
         <PredictionPage/>
         <div className="grid grid-cols-3 gap-4">
-          <div className="text-black rounded-lg border shadow-sm">
+          <div className="text-white rounded-lg border shadow-sm">
             <div className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-800">Total subscribers</p>
+                  <p className="text-sm">Total subscribers</p>
                   <p className="text-2xl font-bold">43</p>
                 </div>
                 <div className="text-green-400">
@@ -54,7 +54,7 @@ const DashboardPage = () => {
             <div className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Active Workers</p>
+                  <p className="text-sm text-white">Active Workers</p>
                   <p className="text-2xl font-bold">2</p>
                 </div>
                 <div className="text-blue-500">
@@ -68,7 +68,7 @@ const DashboardPage = () => {
             <div className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Revenue</p>
+                  <p className="text-sm text-white">Revenue</p>
                   <p className="text-2xl font-bold">$0</p>
                 </div>
                 <div className="text-green-500">
@@ -83,11 +83,11 @@ const DashboardPage = () => {
         {/* Top Stats Row */}
         <div className="col-span-8">
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-white text-black rounded-lg border shadow-sm">
+            <div className="bg-black text-white rounded-lg border shadow-sm">
               <div className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-800">Total subscribers</p>
+                    <p className="text-sm text-white">Total subscribers</p>
                     <p className="text-2xl font-bold">43</p>
                   </div>
                   <div className="text-green-400">
@@ -97,12 +97,12 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg border shadow-sm">
+            <div className="bg-black rounded-lg border border-white shadow-sm">
               <div className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">Active Workers</p>
-                    <p className="text-2xl font-bold">2</p>
+                    <p className="text-sm text-white">Active Workers</p>
+                    <p className="text-2xl font-bold text-white">2</p>
                   </div>
                   <div className="text-blue-500">
                     <Users className="w-5 h-5" />
@@ -111,12 +111,12 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg border shadow-sm">
+            <div className="bg-black border-white rounded-lg border shadow-sm">
               <div className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">Revenue</p>
-                    <p className="text-2xl font-bold">$0</p>
+                    <p className="text-sm text-white">Revenue</p>
+                    <p className="text-2xl font-bold text-white">$0</p>
                   </div>
                   <div className="text-green-500">
                     <DollarSign className="w-5 h-5" />
@@ -127,7 +127,7 @@ const DashboardPage = () => {
           </div>
 
           {/* Chart */}
-          <div className="bg-white rounded-lg border shadow-sm mb-6">
+          <div className="bg-black text-white rounded-lg border shadow-sm mb-6">
             <div className="p-6 pb-2">
               <h3 className="text-lg font-semibold">Weekly overview</h3>
             </div>
@@ -160,7 +160,7 @@ const DashboardPage = () => {
         {/* Right Column */}
         <div className="col-span-4">
           {/* Circular Progress */}
-          <div className="bg-white rounded-lg border shadow-sm mb-6">
+          <div className="bg-black text-white rounded-lg border shadow-sm mb-6">
             <div className="p-6 pb-2">
               <h3 className="text-lg font-semibold">Notifications</h3>
             </div>
@@ -177,7 +177,7 @@ const DashboardPage = () => {
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white rounded-lg border shadow-sm">
+          <div className="bg-black text-white rounded-lg border shadow-sm">
             <div className="p-6 pb-2">
               <h3 className="text-lg font-semibold">Recent Activity</h3>
             </div>
@@ -217,7 +217,7 @@ const DashboardPage = () => {
 
         {/* Bottom Row */}
         <div className="col-span-4">
-          <div className="bg-white rounded-lg border shadow-sm">
+          <div className="bg-black text-white rounded-lg border shadow-sm">
             <div className="p-6 pb-2">
               <h3 className="text-lg font-semibold">Recent Goals</h3>
             </div>
@@ -247,7 +247,7 @@ const DashboardPage = () => {
         </div>
 
         <div className="col-span-4">
-            <div className="bg-white rounded-lg border shadow-sm max-h-52 overflow-auto scrollbar-hide">
+            <div className="bg-black text-white rounded-lg border shadow-sm max-h-52 overflow-auto scrollbar-hide">
               <div className="p-6 pb-2">
                 <h3 className="text-lg font-semibold">Task Management</h3>
               </div>
